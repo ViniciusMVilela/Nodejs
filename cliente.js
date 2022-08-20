@@ -13,13 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Cliente.hasMany(models.Cartao,{foreignKey:'ClienteId', as: 'cartoes'})
     }
-  };
+  }
   Cliente.init({
     nome: DataTypes.STRING,
     cidade: DataTypes.STRING,
     uf: DataTypes.STRING,
     nascimento: DataTypes.DATEONLY,
-
   }, {
     sequelize,
     modelName: 'Cliente',
