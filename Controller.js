@@ -16,17 +16,18 @@ let promocao = models.Promocao;
 app.get('/', function(req,res){
     res.send('Bem vindo ao desafio!')
 });
+
 //criação cliente
 app.post('/clientes',  async function(req,res){
     await cliente.create(
         req.body
-        // nome:"Vinicius",
-        // cidade:"Maringá",
+        // nome:"João",
+        // cidade:"Sarandi",
         // uf:"PR",
-        // nascimento:"2003",
+        // nascimento:"2004/08/15",
         // createAt: new Date(),
         // updateAt: new Date()
-
+    
     ).then(function(){
         return res.json({
             error:false,
@@ -40,6 +41,7 @@ app.post('/clientes',  async function(req,res){
     });
     // res.send('Cliente criado com Sucesso');
 });
+//listacliente
 app.get('/listaclientes', async(req,res)=>{
     await cliente.findAll({
         //raw:true
@@ -48,7 +50,6 @@ app.get('/listaclientes', async(req,res)=>{
         res.json({clientes})
     });
 });
-
 //atualização de clientes
 app.put('/atualizacliente ', async(req,res)=>{
     await cliente.update(req.body,{
@@ -83,7 +84,7 @@ app.get('excluircliente', async(req,res)=>{
     })
 });
 
-// criacão de empresas
+//criação empresa
 app.post('/empresas',  async function(req,res){
     await empresa.create(
         req.body
@@ -147,7 +148,7 @@ app.get('excluirempresa', async(req,res)=>{
         })
     })
 });
-//criaçaõ de promoção
+//criação de promocão
 app.post('/promocaos',  async function(req,res){
     await promocao.create(
         req.body
@@ -209,7 +210,8 @@ app.get('excluirpromocao', async(req,res)=>{
         })
     })
 });
-//criaçaõ de cartao
+
+//criação de cartao
 app.post('/cartaos',  async function(req,res){
     await cartao.create(
         req.body
@@ -270,15 +272,16 @@ app.get('excluircartao', async(req,res)=>{
         })
     })
 });
-//criaçaõ de compra
+//criação de compra
 app.post('/compras',  async function(req,res){
     await compra.create(   // tive que realizar a inserção manual dentro do mySql, relatava problema de data não reconhecida
         req.body
-        // data:"07/08/2022",
+        // data:'2022-08-15',
         // quantidade:"1",
-        //valor:"55",
-        //PromocaoId:"2",
-        //CartaoId:"1"
+        // valor:"87",
+        // PromocaoId:"3",
+        // CartaoId:"2"
+    
     ).then(function(){
         return res.json({
             error:false,
@@ -291,6 +294,7 @@ app.post('/compras',  async function(req,res){
         })
     });
 });
+
 //listagem compras
 app.get('/listacompras', async(req,res)=>{
     await compra.findAll({
@@ -338,16 +342,10 @@ app.get('excluircompra', async(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-let port = process.env.PORT || 3003; 
+let port = process.env.PORT || 3005;
 
 app.listen(port, (req,res)=>{
-    console.log('Servidor está ativo: http://localhost:3003');
-})
+    console.log('Servidor está ativo: '+'http://localhost:3005');
+});
+
+
